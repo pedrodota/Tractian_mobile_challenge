@@ -35,7 +35,7 @@ class _AssetsPageState extends State<AssetsPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(height: 2.h),
-          TextFieldWidget(hintText: 'Buscar Ativo ou Local', onChanged: (_) => controller.filterList(), controller: controller.searchText),
+          TextFieldWidget(hintText: 'Buscar Ativo ou Local',  controller: controller.searchText),
           SizedBox(height: 1.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.w),
@@ -103,16 +103,17 @@ class _AssetsPageState extends State<AssetsPage> {
               padding: EdgeInsets.symmetric(horizontal: 3.w),
               child: Obx(() {
                 if (controller.isLoading ) {
-                  return ListView.separated(
-                    shrinkWrap: true,
-                    itemCount: 8,
-                    separatorBuilder: (context, index) => const SizedBox(
-                      height: 8,
-                    ),
-                    itemBuilder: (context, index) {
-                      return Container(height: 5.h, color: textFieldBackgroundColor, width: 60.w,);
-                    },
-                  );
+                  return const Center(child: CircularProgressIndicator.adaptive());
+                  // return ListView.separated(
+                  //   shrinkWrap: true,
+                  //   itemCount: 8,
+                  //   separatorBuilder: (context, index) => const SizedBox(
+                  //     height: 8,
+                  //   ),
+                  //   itemBuilder: (context, index) {
+                  //     return Container(height: 5.h, color: textFieldBackgroundColor, width: 60.w,);
+                  //   },
+                  // );
                 } else if (controller.nodesFilteredList.isEmpty) {
                   return const Center(
                     child: Text('Assets not found'),
